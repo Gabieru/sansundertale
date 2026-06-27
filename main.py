@@ -1,4 +1,5 @@
 from flask import Flask, request, jsonify
+from flask_cors import CORS
 import uuid
 import json
 
@@ -7,6 +8,7 @@ from sqlalchemy.orm import declarative_base, sessionmaker
 import os
 
 app = Flask(__name__)
+CORS(app, supports_credentials=True)
 
 # --- Database Setup ---
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
