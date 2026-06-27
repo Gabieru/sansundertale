@@ -60,7 +60,7 @@ class Modpack(ModpackCreate):
 
 
 @app.get("/game/{gameId}/modpacks", response_model=List[Modpack])
-async def get_game_modpacks(
+def get_game_modpacks(
     gameId: str = Path(..., title="The ID of the game"),
     page: int = Query(1, ge=1, title="Page number"),
     db: Session = Depends(get_db)
@@ -82,7 +82,7 @@ async def get_game_modpacks(
     return result
 
 @app.get("/user/modpacks", response_model=List[Modpack])
-async def get_user_modpacks(
+def get_user_modpacks(
     user_id: Optional[str] = Cookie(None, title="User ID from cookie"),
     db: Session = Depends(get_db)
 ):
@@ -103,7 +103,7 @@ async def get_user_modpacks(
     return result
 
 @app.post("/game/{gameId}/modpacks", status_code=201, response_model=Modpack)
-async def create_modpack(
+def create_modpack(
     modpack_in: ModpackCreate,
     gameId: str = Path(..., title="The ID of the game"),
     user_id: Optional[str] = Cookie(None, title="User ID from cookie"),
