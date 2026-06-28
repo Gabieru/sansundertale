@@ -8,7 +8,9 @@ from sqlalchemy.orm import declarative_base, sessionmaker
 import os
 
 app = Flask(__name__)
-CORS(app, supports_credentials=True)
+
+CORS(app, supports_credentials=True, origins=["http://localhost:3000", 
+"https://interfaces-e1-prototype-qjaw.vercel.app"])
 
 # --- Database Setup ---
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
