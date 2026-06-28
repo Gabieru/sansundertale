@@ -62,7 +62,7 @@ def get_game_modpacks(gameId):
 
 @app.route("/user/modpacks", methods=["GET"])
 def get_user_modpacks():
-    user_id = request.cookies.get("user_id")
+    user_id = request.cookies.get("user_id") or request.headers.get("X-User-Id")
     if not user_id:
         return jsonify({"detail": "Not authenticated"}), 401
         
@@ -75,7 +75,7 @@ def get_user_modpacks():
 
 @app.route("/game/<gameId>/modpacks", methods=["POST"])
 def create_modpack(gameId):
-    user_id = request.cookies.get("user_id")
+    user_id = request.cookies.get("user_id") or request.headers.get("X-User-Id")
     if not user_id:
         return jsonify({"detail": "Not authenticated"}), 401
         
